@@ -14,13 +14,13 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //fungsi eloquent menampilkan data menggunakan pagination 
+        //fungsi eloquent menampilkan data menggunakan pagination
        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
 
-        // Mengambil semua isi tabel 
-        $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);      
+        // Mengambil semua isi tabel
+        $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);
         return view('mahasiswa.index', compact('mahasiswa'))-> with('i', (request()
-        ->input('page', 1) - 1) * 5); 
+        ->input('page', 1) - 1) * 5);
 
     }
 
@@ -119,6 +119,6 @@ class MahasiswaController extends Controller
         //fungsi eloquent untuk menghapus data
         Mahasiswa::where('id_mahasiswa',$mahasiswa->id_mahasiswa)->delete();
         return redirect()->route('mahasiswa.index')
-            -> with('success', 'Mahasiswa Berhasil Dihapus');  
+            -> with('success', 'Mahasiswa Berhasil Dihapus');
     }
 }
